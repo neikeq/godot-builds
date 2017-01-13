@@ -151,11 +151,13 @@ before_deploy:
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="opt"; else target_tag="opt.debug"; fi;
-      cp tools/dist/html_fs/godot.html .;
       cp tools/dist/html_fs/godotfs.js .;
+      cp -f bin/godot.javascript.$target_tag.asm.js godot.asm.js;
       cp -f bin/godot.javascript.$target_tag.js godot.js;
+      cp -f bin/godot.javascript.$target_tag.html godot.html;
       cp -f bin/godot.javascript.$target_tag.html.mem godot.mem;
-      zip bin/godot.javascript.$target_tag.zip godot.js godot.mem godotfs.js godot.html;
+      zip bin/godot.javascript.$target_tag.zip godot.asm.js godot.js godot.mem godotfs.js godot.html;
+      rm -f bin/godot.javascript.$target_tag.asm.js;
       rm -f bin/godot.javascript.$target_tag.js;
       rm -f bin/godot.javascript.$target_tag.html*;
     fi;
