@@ -111,7 +111,7 @@ before_build:
 build_script:
   - cd godot
   - for /f %%p in ('dir /b ..\patches') do git apply ..\patches\%%p
-  - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/$($env:APPVEYOR_REPO_TAG_NAME)/mono_glue.gen.cpp
+  - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/master_20171020-mono11/mono_glue.gen.cpp
   - ps: Move-Item C:\projects\godot-builds\godot\mono_glue.gen.cpp C:\projects\godot-builds\godot\modules\mono\glue\ -force
   - echo %cd%
   - git rev-parse HEAD
